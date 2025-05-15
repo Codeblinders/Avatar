@@ -14,13 +14,23 @@ function App() {
   const userName = 'John Doe';
 
   useEffect(() => {
-    fetch('https://reqres.in/api/users?page=1')
-      .then(res => res.json())
+    fetch('https://reqres.in/api/users')  // Using reqres.in as a sample API
+      .then(async res => {
+        if (!res.ok) {
+          throw new Error('Network response was not ok');
+        }
+        const contentType = res.headers.get('content-type');
+        if (!contentType || !contentType.includes('application/json')) {
+          throw new Error('Received non-JSON response');
+        }
+        return res.json();
+      })
       .then(data => {
-        setAvatars(data.data.slice(0, 3));
+        setAvatars(data.data ? data.data.slice(0, 3) : []);
         setIsLoading(false);
       })
       .catch(err => {
+        console.error('Fetch error:', err);
         setError('Failed to fetch avatars');
         setIsLoading(false);
       });
@@ -36,7 +46,7 @@ function App() {
     setTimeout(() => {
       setModalOpen(false);
       setIsClosing(false);
-    }, 300); // Matches CSS transition duration
+    }, 300); 
   };
 
   return (
