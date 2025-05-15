@@ -14,17 +14,26 @@ function App() {
   const userName = 'John Doe';
 
   useEffect(() => {
-    fetch('https://reqres.in/api/users')
-      .then(res => res.json())
-      .then(data => {
-        setAvatars(data.data.slice(0, 3));
-        setIsLoading(false);
-      })
-      .catch(err => {
-        setError('Failed to fetch avatars');
-        setIsLoading(false);
-      });
-  }, []);
+  fetch('https://reqres.in/api/users')
+    .then(res => {
+      if (!res.ok) {
+        console.error('Failed response:', res.status, res.statusText);
+        throw new Error('Fetch failed');
+      }
+      return res.json();
+    })
+    .then(data => {
+      console.log('Fetched data:', data);
+      setAvatars(data.data.slice(0, 3));
+      setIsLoading(false);
+    })
+    .catch(err => {
+      console.error('Error:', err);
+      setError('Failed to fetch avatars');
+      setIsLoading(false);
+    });
+}, []);
+
 
   const openModal = () => {
     setIsClosing(false);
