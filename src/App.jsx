@@ -14,24 +14,25 @@ function App() {
   const userName = 'John Doe';
 
   useEffect(() => {
-    fetch('https://reqres.in/api/users')  // Using reqres.in as a sample API
-      .then(async res => {
+    fetch('https://reqres.in/api/users', {
+      method: 'GET',
+      headers: {
+        'x-api-key': 'reqres-free-v1'
+      }
+    })
+      .then(res => {
         if (!res.ok) {
-          throw new Error('Network response was not ok');
-        }
-        const contentType = res.headers.get('content-type');
-        if (!contentType || !contentType.includes('application/json')) {
-          throw new Error('Received non-JSON response');
+          throw new Error(`HTTP error! Status: ${res.status}`);
         }
         return res.json();
       })
       .then(data => {
-        setAvatars(data.data ? data.data.slice(0, 3) : []);
+        console.log(data); // Optional: Log data for debugging
+        setAvatars(data.data.slice(0, 3));
         setIsLoading(false);
       })
       .catch(err => {
-        console.error('Fetch error:', err);
-        setError('Failed to fetch avatars');
+        setError(`Failed to fetch avatars: ${err.message}`);
         setIsLoading(false);
       });
   }, []);
@@ -46,7 +47,7 @@ function App() {
     setTimeout(() => {
       setModalOpen(false);
       setIsClosing(false);
-    }, 300); 
+    }, 300); // Matches CSS transition duration
   };
 
   return (
