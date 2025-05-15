@@ -14,7 +14,7 @@ function App() {
   const userName = 'John Doe';
 
   useEffect(() => {
-  fetch('https://reqres.in/api/users')
+  fetch('https://randomuser.me/api/?results=3')
     .then(res => {
       if (!res.ok) {
         console.error('Failed response:', res.status, res.statusText);
