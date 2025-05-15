@@ -1,0 +1,12 @@
+.avatar-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+@media (max-width: 768px) {
+  .avatar-list {
+    grid-template-columns: 1fr;
+    padding-left:20px ;
+  }
+}

@@ -1,0 +1,67 @@
+/* Global reset and base styles */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #f0f4f8;
+  background: linear-gradient(135deg, #00397a 30%  ,rgb(22, 0, 88) 40%, #120225 50% );
+  background-size: 400% 400%;
+  animation: bgGradientShift 20s ease infinite;
+  min-height: 100vh;
+  scroll-behavior: smooth;
+}
+
+@keyframes bgGradientShift {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* App layout container */
+.app-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+/* Loading and error states */
+.status-message {
+  text-align: center;
+  font-size: 1.2rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.status-message.error {
+  color: #ff6b6b;
+  background-color: rgba(255, 0, 0, 0.1);
+}
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .app-container {
+    padding: 1rem;
+  }
+
+  .status-message {
+    font-size: 1rem;
+  }
+}
+
+/* Respect reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}

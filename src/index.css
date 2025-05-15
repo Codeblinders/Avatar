@@ -1,0 +1,9 @@
+@media (max-width: 600px) {
+  .avatar-list {
+    flex-direction: column;
+    align-items: center;
+  }
+  .avatar-card {
+    width: 80%;
+  }
+}

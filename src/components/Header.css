@@ -1,0 +1,56 @@
+.header {
+    background: linear-gradient(to right, #006ae3, #370043);
+    animation: bgGradientShift 6s ease-in-out infinite alternate;
+    color: white;
+    margin: 10px;
+    border-radius: 40px 0px;
+    text-align: center;
+    font-weight: 600;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transition: all 0.3s ease-in-out;
+}
+.header:hover {
+    transform: translateY(-3px) scale(1.03) rotate(-1deg);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.35);
+}
+.header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+    background: linear-gradient(90deg, #13bad0, #f144d7, #5295d3, #32938e);
+    background-size: 200% 200%;
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: 1.5px;
+    animation: colorChange 4s linear infinite alternate, textPop 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes bgGradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes colorChange {
+    0% {
+        background-position: 0% 50%;
+    }
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes textPop {
+    0% {
+        letter-spacing: 1.5px;
+        transform: scale(1);
+    }
+    100% {
+        letter-spacing: 3px;
+        transform: scale(1.05);
+    }
+}
